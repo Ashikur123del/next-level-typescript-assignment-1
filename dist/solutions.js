@@ -20,4 +20,10 @@ const processInput = (input) => {
 const formatCoordinate = (coord) => {
     return `Location: ${coord[2]} (${coord[0]}, ${coord[1]})`;
 };
-console.log(formatCoordinate([23.81, 90.41, "Dhaka"]));
+// console.log(formatCoordinate([23.81, 90.41, "Dhaka"]));
+const concatenateArrays = (...arrays) => {
+    return [].concat(...arrays);
+};
+// Function call kora ebong result console.log-e dewa:
+console.log(concatenateArrays(["a", "b"], ["c", "d"]));
+console.log(concatenateArrays([1, 2], [3, 4], [5]));
