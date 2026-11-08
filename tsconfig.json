@@ -1,0 +1,17 @@
+{
+  
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    "outDir": "./dist",
+    "module": "nodenext",
+    "target": "esnext",
+    "types": [],
+  
+
+    // Recommended Options
+    "strict": true,
+    "moduleDetection": "force",
+  
+  }
+}
