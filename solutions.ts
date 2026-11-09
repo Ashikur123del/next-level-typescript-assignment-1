@@ -5,8 +5,6 @@ const multiplyValue = (value: number, multiplier = 2): number => {
 
 const multiplyValueUser = multiplyValue(10, 2);
 
-// console.log(multiplyValueUser)
-
 
 
 const processInput = (input: string | number | boolean) => {
@@ -20,15 +18,15 @@ const processInput = (input: string | number | boolean) => {
 };
 
 
-// console.log(processInput(true))
+const processInputValue = processInput(true)
 
 
 const formatCoordinate = (coord: readonly [number, number, string]): string => {
   return `Location: ${coord[2]} (${coord[0]}, ${coord[1]})`;
 };
 
+const CoordinateValue =  formatCoordinate([23.81, 90.41, "Dhaka"])
 
-// console.log(formatCoordinate([23.81, 90.41, "Dhaka"]));
 
 
 
@@ -36,7 +34,75 @@ const concatenateArrays = <T>(...arrays: T[][]): T[] => {
   return ([] as T[]).concat(...arrays);
 };
 
-// console.log(concatenateArrays(["a", "b"], ["c", "d"]));
-// console.log(concatenateArrays([1, 2], [3, 4], [5]));
+concatenateArrays(["a", "b"], ["c", "d"])
+concatenateArrays([1, 2], [3, 4], [5])
 
+
+
+interface Course {
+  title: string;
+  students: number;
+  isPublished: boolean;
+}
+
+const getPopularCourses = (courses: Course[], minStudents: number): Course[] => {
+  return courses.filter((course) => course.isPublished && course.students >= minStudents);
+};
+
+const courses = [
+  { title: "TypeScript Mastery", students: 120, isPublished: true },
+  { title: "Draft Course", students: 200, isPublished: false },
+  { title: "Basic HTML", students: 45, isPublished: true },
+  { title: "Next.js Pro", students: 85, isPublished: true }
+];
+
+getPopularCourses(courses, 80)
+
+
+
+const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
+  return items.map((item) => item[key]);
+};
+
+const users = [
+  { id: 1, name: "Rakib", role: "Admin" },
+  { id: 2, name: "Sadia", role: "Editor" },
+  { id: 3, name: "Tariq", role: "Subscriber" }
+];
+
+pluckValues(users, "name")
+pluckValues(users, "id")
+
+
+class Employee {
+  protected name: string;
+  private baseSalary: number;
+
+  constructor(name: string, baseSalary: number) {
+    this.name = name;
+    this.baseSalary = baseSalary;
+  }
+
+  public getDetails(): string {
+    return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+  }
+}
+
+class Manager extends Employee {
+  private department: string;
+
+  constructor(name: string, baseSalary: number, department: string) {
+    super(name, baseSalary);
+    this.department = department;
+  }
+
+  public getRoleInfo(): string {
+    return `Manager of ${this.department}: ${this.name}`;
+  }
+}
+
+
+const manager = new Manager("Alice", 50000, "Engineering");
+manager.getDetails();
+manager.getRoleInfo();
 
