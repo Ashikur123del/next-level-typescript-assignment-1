@@ -1,13 +1,8 @@
- 
-const multiplyValue = (value: number, multiplier = 2): number => {
+const multiplyValue = (value: number, multiplier: number = 2): number => {
   return value * multiplier;
 };
 
-const multiplyValueUser = multiplyValue(10, 2);
-
-
-
-const processInput = (input: string | number | boolean) => {
+const processInput = (input: string | number | boolean): string | number => {
   if (typeof input === "string") {
     return input.trim().toLowerCase();
   } else if (typeof input === "number") {
@@ -17,27 +12,13 @@ const processInput = (input: string | number | boolean) => {
   }
 };
 
-
-const processInputValue = processInput(true)
-
-
 const formatCoordinate = (coord: readonly [number, number, string]): string => {
   return `Location: ${coord[2]} (${coord[0]}, ${coord[1]})`;
 };
 
-const CoordinateValue =  formatCoordinate([23.81, 90.41, "Dhaka"])
-
-
-
-
 const concatenateArrays = <T>(...arrays: T[][]): T[] => {
   return ([] as T[]).concat(...arrays);
 };
-
-concatenateArrays(["a", "b"], ["c", "d"])
-concatenateArrays([1, 2], [3, 4], [5])
-
-
 
 interface Course {
   title: string;
@@ -49,29 +30,9 @@ const getPopularCourses = (courses: Course[], minStudents: number): Course[] => 
   return courses.filter((course) => course.isPublished && course.students >= minStudents);
 };
 
-const courses = [
-  { title: "TypeScript Mastery", students: 120, isPublished: true },
-  { title: "Draft Course", students: 200, isPublished: false },
-  { title: "Basic HTML", students: 45, isPublished: true },
-  { title: "Next.js Pro", students: 85, isPublished: true }
-];
-
-getPopularCourses(courses, 80)
-
-
-
 const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
   return items.map((item) => item[key]);
 };
-
-const users = [
-  { id: 1, name: "Rakib", role: "Admin" },
-  { id: 2, name: "Sadia", role: "Editor" },
-  { id: 3, name: "Tariq", role: "Subscriber" }
-];
-
-pluckValues(users, "name")
-pluckValues(users, "id")
 
 
 class Employee {
@@ -102,11 +63,6 @@ class Manager extends Employee {
 }
 
 
-const manager = new Manager("Alice", 50000, "Engineering");
-manager.getDetails();
-manager.getRoleInfo();
-
-
 
 const validateAgeAsync = (age: number): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -119,23 +75,3 @@ const validateAgeAsync = (age: number): Promise<string> => {
     }
   });
 };
-
-const testAgeValidation = async () => {
-  try {
-    console.log("Checking age 20...");
-    const result1 = await validateAgeAsync(20);
-    console.log(result1); 
-  } catch (error: any) {
-    console.error(error.message);
-  }
-
-  try {
-    console.log("Checking age 15...");
-    const result2 = await validateAgeAsync(15);
-    console.log(result2);
-  } catch (error: any) {
-    console.error(error.message);
-  }
-};
-
-testAgeValidation();
