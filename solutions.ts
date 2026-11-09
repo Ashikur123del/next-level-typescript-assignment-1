@@ -106,3 +106,36 @@ const manager = new Manager("Alice", 50000, "Engineering");
 manager.getDetails();
 manager.getRoleInfo();
 
+
+
+const validateAgeAsync = (age: number): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (age >= 18) {
+      setTimeout(() => {
+        resolve("Access Granted");
+      }, 1000);
+    } else {
+      reject(new Error("Access Denied: Must be 18 or older"));
+    }
+  });
+};
+
+const testAgeValidation = async () => {
+  try {
+    console.log("Checking age 20...");
+    const result1 = await validateAgeAsync(20);
+    console.log(result1); 
+  } catch (error: any) {
+    console.error(error.message);
+  }
+
+  try {
+    console.log("Checking age 15...");
+    const result2 = await validateAgeAsync(15);
+    console.log(result2);
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
+
+testAgeValidation();
